@@ -16,6 +16,11 @@ See sample codes in Entities folder
 in MacOS/Linux, you can use ./ef-mig-add.sh {version_number}
 
 ### Step 3: define your API controller
-See sample codes in Controllers folder
+See sample codes in Controllers folder. Just type in a few lines of code and you get a CRUD API up and runnning. Example:
 
+namespace AngkorAPI.Controllers;
 
+[GenerateCrudApi(typeof(Customer), ExportExcel: true)]
+public partial class CustomersController : ApiControllerBase
+{
+}

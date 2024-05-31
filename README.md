@@ -1,4 +1,5 @@
-echo "# angkorapi" >> README.md
+# Welcome to Angkor API, 
+## A C# .NET8.0 project template using code generation from Entities to API Controllers
 
 mkdir AngkorAPI
 
@@ -8,3 +9,4 @@ cd AngkorAPI
 
 code .
 
+Enjoy !!!

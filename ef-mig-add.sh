@@ -1,0 +1,1 @@
+dotnet ef migrations add V0.$1 --project . --context AppDbContext

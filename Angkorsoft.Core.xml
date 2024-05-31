@@ -1,0 +1,770 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Angkorsoft.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Angkorsoft.Core.Attributes.AuthorizeXAttribute">
+            <summary>
+            Specifies the method this attribute is applied to requires authorization.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Attributes.AuthorizeXAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Angkorsoft.Core.Attributes.AuthorizeXAttribute"/> class. 
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Attributes.AuthorizeXAttribute.Policy">
+            <summary>
+            Gets or sets the policy name that determines access to the resource.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenAggregate">
+            <summary>
+            For generator to generate aggregate expression for a calculated field
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreDelete">
+            <summary>
+            Ignore in code generation for Delete operation in one-to-many relationship
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreSave">
+            <summary>
+            Ignore Create and Update in code generation
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenListQueryDateRangeOptionalParam">
+            <summary>
+            Generate as optional date range parameter in list query
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenListQueryDateRangeParam">
+            <summary>
+            Generate as date range parameter in list query
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenListQueryOptionalParam">
+            <summary>
+            Generate as optional parameter for list query  
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenListQueryParam">
+            <summary>
+            Generate as parameter in list query
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenMapBeforeCreate">
+            <summary>
+            Inform code generator to insert the body of the method into the final code before insert data
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenMapBeforeSave">
+            <summary>
+            Inform code generator to insert the body of the method into the final code before insert or update data
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Attributes.GenMapBeforeUpdate">
+            <summary>
+            Inform code generator to insert the body of the method into the final code before update data
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Entities.SysList.ListId">
+            <summary>
+            Header List Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Angkorsoft.Core.Entities.SysList.Value">
+            <summary>
+            Internal value stored as integer
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Angkorsoft.Core.Entities.SysList.Code">
+            <summary>
+            User value stored as string
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Angkorsoft.Core.Entities.SysList.Flags">
+            <summary>
+            Special flags used to identity record i.e. broker, base
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.IsBetween(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Provides extension methods for working with dates and times.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.IsBetween(System.DateOnly,System.DateOnly,System.DateOnly)">
+            <summary>
+            Checks if a DateOnly object is between two other DateOnly objects.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.FormatStdDate(System.DateOnly)">
+            <summary>
+            Formats a DateOnly object using the standard date format.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.FormatStdDate(System.DateTime)">
+            <summary>
+            Formats a DateTime object using the standard date format.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.FormatStdDateTime(System.DateTime)">
+            <summary>
+            Formats a DateTime object using the standard date and time format.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.ConvertDateTime(System.DateOnly,System.TimeSpan)">
+            <summary>
+            Converts a DateOnly object to a DateTime object with a specific time.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.ConvertDateTime(System.DateOnly,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts a DateOnly object to a DateTime object with a specific hour, minute, and second.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.ConvertDateTime(System.DateOnly)">
+            <summary>
+            Converts a DateOnly object to a DateTime object with a zero timespan.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DateExtensions.ConvertDateTimeMax(System.DateOnly)">
+            <summary>
+            Converts a DateOnly object to a DateTime object with the maximum time value of 23:59:59.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DbSetExtension.GetNextId``1(Microsoft.EntityFrameworkCore.DbSet{``0})">
+            <summary>
+            Get the last Id + 1
+            </summary>
+            <param name="dbSet"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DbSetExtension.SaveAddOrUpdateAsync``2(Microsoft.EntityFrameworkCore.DbSet{``1},``0,Angkorsoft.Core.Extensions.DbSetExtension.Task2{``0,``1},System.Boolean)">
+            <summary>
+            Auto detect data and then save add or update.
+            </summary>
+            <param name="dbSet">The underlyning DbSet</param>
+            <param name="input">The input data passed from user</param>
+            <param name="onMapping">Additional mapping to be done if needed.</param>
+            <param name="createMode">If it is in create mode (save all new lines data). It will fine-tuned for speed then</param>
+            <typeparam name="TInput"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Angkorsoft.Core.Extensions.DbSetExtension.Task2`2">
+            <summary>
+            Task with 2 arguments
+            </summary>
+            <param name="arg"></param>
+            <param name="arg2"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.DbSetExtension.SaveMasterDetailsAsync``2(Microsoft.EntityFrameworkCore.DbSet{``1},System.Collections.Generic.IEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},Angkorsoft.Core.Extensions.DbSetExtension.Task2{``0,``1},Angkorsoft.Core.Extensions.DbSetExtension.Task2{``0,``1},System.Action{System.Exception},System.Boolean)">
+            <summary>
+            Save master details record from list of details user input. 
+            It will loop through each record of the new FromInputLines and automatically add/edit/remove record based on Primary Key of the detail table (detail.id).
+            </summary>
+            <param name="dbSet">The underlying dbSet</param>
+            <param name="fromInputLines">source list of details user input</param>
+            <param name="relationSelector">group selector for master key reference</param>
+            <param name="onLineMapping">additional mapping if exist before save</param>
+            <param name="onSuccess">Triggered on save is successful for each detail line</param>
+            <param name="onError">Triggered error exception if error</param>
+            <param name="createMode">If it is in create mode (save all new lines data). It will fine-tuned for speed then</param> 
+            <typeparam name="TInput"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.NumbersExtension.InBetween``1(``0,``0,``0)">
+            <summary>
+            Checks if the given number is between the minimum and maximum values.
+            </summary>
+            <typeparam name="T">The type of the numbers.</typeparam>
+            <param name="num">The number to check.</param>
+            <param name="min">The minimum value.</param>
+            <param name="max">The maximum value.</param>
+            <returns>True if the number is between the range, false otherwise.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.NumbersExtension.FormatCurrency(System.Single)">
+            <summary>
+            Formats the given float number as currency with two decimal places and thousands separator (no symbol).
+            </summary>
+            <param name="num">The float number to format.</param>
+            <returns>The formatted currency string.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.NumbersExtension.FormatCurrency(System.Decimal)">
+            <summary>
+            Formats the given decimal number as currency with two decimal places and thousands separator (no symbol).
+            </summary>
+            <param name="num">The float number to format.</param>
+            <returns>The formatted currency string.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.NumbersExtension.ParseFloatInvariant(System.String)">
+            <summary>
+            Parses the given string to a float using the invariant culture.
+            </summary>
+            <param name="numStr">The string to parse.</param>
+            <returns>The parsed float value or 0 if the parsing fails.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.NumbersExtension.ParseDecimalInvariant(System.String)">
+            <summary>
+            Parses the given string to a decimal using the invariant culture.
+            </summary>
+            <param name="numStr">The string to parse.</param>
+            <returns>The parsed decimal value or 0 if the parsing fails.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.StringExtensions.ReplaceDataVariables(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            Replace data variables for each key value in a dictionary of "param_name" and dataObject
+            </summary>
+            <param name="param"></param>
+            <param name="content">Content string contain variables to be replaced</param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Val(System.Nullable{System.Boolean})">
+            <summary>
+            Shortcut to bool?.GetValueOrDefault(false)
+            </summary>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Val(System.Nullable{System.TimeSpan})">
+            <summary>
+            Shortcut to TimeSpan?.GetValueOrDefault(TimeSpan.Zero)
+            </summary>
+            <returns>TimeSpan</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Val(System.Nullable{System.Decimal})">
+            <summary>
+            Equivalent to Decimal?.GetValueOrDefault(0)
+            </summary>
+            <returns>Decimal</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Val(System.Nullable{System.Int32})">
+            <summary>
+            Equivalent to int?.GetValueOrDefault(0)
+            </summary>
+            <returns>int</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Val(System.Nullable{System.Int16})">
+            <summary>
+            Equivalent to Int16?.GetValueOrDefault(0)
+            </summary>
+            <returns>Int16</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Str(System.Object)">
+            <summary>
+            Equivalent to Convert.ToString(object)
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Dec(System.Object)">
+            <summary>
+            Equivalent to x.ToDecimal(value);
+            </summary>
+            <returns>Decimal</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.ToDecimal(System.Object)">
+            <summary>
+            Handling Null and empty string : returns zero if null
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.ToBool(System.Object)">
+            <summary>
+            Equivalent to Convert.ToBoolean(value);
+            </summary>
+            <returns>Decimal</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.ToFloat(System.Object)">
+            <summary>
+            Convert null, dbnull, empty string to zero or any object value to float 
+            </summary>
+            <returns>float</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.ToInt(System.Object)">
+            <summary>
+            Convert null, dbnull, empty string to zero or any object value to int 
+            </summary>
+            <returns>int</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.ToInt16(System.Object)">
+            <summary>
+            Convert null, dbnull, empty string to zero or any object value to short
+            </summary>
+            <returns>Short</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Extensions.TypeExtensions.Ts(System.Object)">
+            <summary>
+            Equivalent to Convert.ToDateTime(object).TimeOfDay()
+            </summary>
+            <returns>Short</returns>
+        </member>
+        <member name="P:Angkorsoft.Core.Interfaces.IPermissionService.AllPermissions">
+            <summary>
+            returns all list of permissions available in the system
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Interfaces.IPermissionService.AssignPermissionsToRole(Angkorsoft.Core.Entities.SysRole,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Assign list of permissions to a role. Create one if not existed.
+            </summary>
+            <param name="role"></param>
+            <param name="permissions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Interfaces.IPermissionService.GetRoleAssignedPermissionClaimsAsync(Angkorsoft.Core.Entities.SysRole)">
+            <summary>
+            Get assigned permissions for a role
+            </summary>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Interfaces.IPermissionService.GetScopeClaims(System.String)">
+            <summary>
+            Teturns list of permission claims assigned to a role 
+            </summary>
+            <param name="scope"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Interfaces.IPermissionService.GetUserAssignedPermissionClaimsAsync(Angkorsoft.Core.Entities.SysUser)">
+            <summary>
+            Returns list of permission claims assigned to a user (inherited from all his/her roles) 
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Interfaces.IPermissionService.GetUserAssignedPermissionClaimsAsync(System.String)">
+            <summary>
+            Returns list of permission claims assigned to a user (inherited from all his/her roles)
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Interfaces.IPermissionService.CheckPermissionAsync(System.String,System.String)">
+            <summary>
+            Use UserCanAccess function to check for user permission; throw exception if no permission
+            </summary>
+            <param name="username"></param>
+            <param name="claim"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Angkorsoft.Core.Interfaces.ISqlService.ConnectionKey">
+            <summary>
+            Key name of connection string in appsettings.json; Default is DefaultConnection
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Logic.SimpleRolePermission">
+            <summary>
+            Contains role information with simplified permission list useful for UI rendering
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Migrations.V00">
+            <inheritdoc />
+        </member>
+        <member name="M:Angkorsoft.Core.Migrations.V00.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Angkorsoft.Core.Migrations.V00.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Angkorsoft.Core.Migrations.V00.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Angkorsoft.Core.Models.BaseCodeNameEntity">
+            <summary>
+            Autonumber code base entity.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Models.PagingList`1">
+            This view model class has been referred from example created by Marien Monnier at Soft.it. All credits to Marien for this class
+            <summary>
+            A full result, as understood by jQuery DataTables.
+            </summary>
+            <typeparam name="T">The data type of each row.</typeparam>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingList`1.TotalRecords">
+            <summary>
+            Total records, before filtering (i.e. the total number of records in the database)
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingList`1.FilteredRecords">
+            <summary>
+            Total records, after filtering (i.e. the total number of records after filtering has been applied - not just the number of records being returned for this page of data).
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingList`1.CustomNumber">
+            <summary>
+            Additional value you might want to add in.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingList`1.Data">
+            <summary>
+            The data to be displayed in the table.
+            This is an array of data source objects, one for each row, which will be used by DataTables.
+            Note that this parameter's name can be changed using the ajax option's dataSrc property.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Models.PagingDataColumn">
+            <summary>
+            A paging data column.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingDataColumn.Data">
+            <summary>
+            Column's data source, as defined by columns.data.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingDataColumn.Name">
+            <summary>
+            Column's name, as defined by columns.name.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingDataColumn.Searchable">
+            <summary>
+            Flag to indicate if this column is searchable (true) or not (false). This is controlled by columns.searchable.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingDataColumn.Orderable">
+            <summary>
+            Flag to indicate if this column is orderable (true) or not (false). This is controlled by columns.orderable.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingDataColumn.Search">
+            <summary>
+            Search value to apply to this specific column.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Models.PagingOrder">
+            <summary>
+            An order, as sent by jQuery DataTables when doing AJAX queries.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingOrder.Column">
+            <summary>
+            Column to which ordering should be applied.
+            This is an index reference to the columns array of information that is also submitted to the server.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingOrder.Dir">
+            <summary>
+            Ordering direction for this column.
+            It will be dt-string asc or dt-string desc to indicate ascending ordering or descending ordering, respectively.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Models.PagingOrderDir">
+            <summary>
+            Sort orders of jQuery DataTables.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Models.PagingSearch">
+            <summary>
+            A search, as sent by jQuery DataTables when doing AJAX queries.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingSearch.Value">
+            <summary>
+            Global search value. To be applied to all columns which have searchable as true.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingSearch.Regex">
+            <summary>
+            true if the global filter should be treated as a regular expression for advanced searching, false otherwise.
+            Note that normally server-side processing scripts will not perform regular expression searching for performance reasons on large data sets, but it is technically possible and at the discretion of your script.
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Core.Models.PagingParam">
+            <summary>
+            The parameters sent by jQuery DataTables in AJAX queries.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingParam.Page">
+            <summary>
+            The page number you want to query
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingParam.PageSize">
+            <summary>
+            Number of records per page. It is expected that the number of records returned will be equal to this number, unless the server has fewer records to return.
+            Note that this can be -1 to indicate that all records should be returned (although that negates any benefits of server-side processing!)
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingParam.Keyword">
+            <summary>
+            Keyword search value to be applied to columns which have searchable as true.
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingParam.SortedBy">
+            <summary>
+            The column name set for data sorting
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PagingParam.SortAsc">
+            <summary>
+            Sort ascending mode?
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PermissionInfo.Id">
+            <summary>
+            Topic i.e. Person
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PermissionInfo.FullName">
+            <summary>
+            Topic full name i.e. Permisions.Person
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PermissionInfo.Bits">
+            <summary>
+            Full applicables bits
+            </summary>
+        </member>
+        <member name="P:Angkorsoft.Core.Models.PermissionInfo.Values">
+            <summary>
+            List of KeyPairValue i.e. View = true, Edit = false
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.ExcelService.Import(System.Byte[])">
+            <summary>
+            Import existing excel bytes to DataTable
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.ExcelService.Import(System.IO.Stream)">
+            <summary>
+            Import existing excel bytes stream to DataTable
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.MsgQueueManager.QueueIMessageAsync(System.Int32,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Save message in database and push notification to web app user.
+            </summary>
+            <param name="userId"></param>
+            <param name="subject"></param>
+            <param name="bodyMsg"></param>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.ObjectCopier`2.Copy(`0,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Copy object's simple properties (not complex object)
+            </summary>
+            <param name="src"></param>
+            <param name="exceptFields"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Angkorsoft.Core.Services.PermissionService.AllPermissions">
+            <summary>
+            Returns all permissions used in the system. It is automatically computed from all PermissionScopes and Permissions flags
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.PermissionService.ListPermissionScopeFullNames(System.String)">
+            <summary>
+            Return all application permission full names for a scope
+            </summary>
+            <param name="scopeName">i.e User, People</param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.SystemSetting.GetValue(System.String)">
+            <summary>
+            Retrieves the value of a setting by name.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <returns>The value of the setting, or null if not found.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.SystemSetting.GetValue(System.String,System.String)">
+            <summary>
+            Retrieves the value of a setting by name with a default value.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <param name="defaultValue">The default value to return if the setting is not found.</param>
+            <returns>The value of the setting, or the default value if not found.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.SystemSetting.GetValue``1(System.String)">
+            <summary>
+            Retrieves the value of a setting by name and converts it to the specified generic type T.
+            </summary>
+            <typeparam name="T">The type to convert the setting value to.</typeparam>
+            <param name="name">The name of the setting.</param>
+            <returns>The value of the setting, or null if not found.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.SystemSetting.GetValue``1(System.String,``0)">
+            <summary>
+            Retrieves the value of a setting by name and converts it to the specified generic type T.
+            </summary>
+            <typeparam name="T">The type to convert the setting value to.</typeparam>
+            <param name="name">The name of the setting.</param>
+            <param name="defaultValue">The default value to return if the setting is not found or cannot be converted to T.</param>
+            <returns>The value of the setting, or the default value if not found or cannot be converted to T.</returns>
+        </member>
+        <member name="T:Angkorsoft.Core.Services.WebAppNotifyService">
+            <summary>
+            Web App push notification service
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.WebAppNotifyService.StartProcessAsync(System.String,System.String,System.String)">
+            <summary>
+            Register a process 
+            </summary>
+            <param name="processId"></param>
+            <param name="connectionId"></param>
+            <param name="title"></param>
+            <returns></returns>
+            <exception cref="T:Angkorsoft.Core.Exceptions.AppException"></exception> <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.WebAppNotifyService.DismissAll(System.String)">
+            <summary>
+            Send notify message to a connection via Id to Dismiss all alertify dialog.
+            </summary>
+            <param name="connectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.WebAppNotifyService.SendAsync(System.String,Angkorsoft.Core.Enums.NotifyMethods,System.String)">
+            <summary>
+            Send notify message to a client connection via Id 
+            </summary>
+            <param name="connectionId"></param>
+            <param name="method">message type or method of the Js function</param>
+            <param name="msg">detail message</param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.WebAppNotifyService.SendMeAsync(Angkorsoft.Core.Enums.NotifyMethods,System.String)">
+            <summary>
+            Send notify message to current user
+            </summary>
+            <param name="method">message type or method of the Js function</param>
+            <param name="msg">detail message</param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.WebAppNotifyService.SendMsgToUserAsync(System.Int32,Angkorsoft.Core.Enums.NotifyMethods,System.String)">
+            <summary>
+            Send notify message to a user
+            </summary>
+            <param name="userId">user id to send to</param>
+            <param name="method">message type or method of the Js function</param>
+            <param name="msg">detail message</param>
+            <returns></returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Services.WebAppNotifyService.PushMsgAsync(System.Int32,Angkorsoft.Core.Entities.SysMsg)">
+            <summary>
+            Push a message to a user
+            </summary>
+            <param name="userId">User id to push to</param>
+            <param name="msg">Message object</param>
+            <returns></returns>
+        </member>
+        <member name="T:Angkorsoft.Core.Encryption.AesEncryptionService">
+            <summary>
+            AES Encryption Service. To properly make use of this, please configure "AES:Key" in appsettings.json
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Encryption.AesEncryptionService.Encrypt(System.String)">
+            <summary>
+            Encrypts a plaintext string using AES encryption.
+            </summary>
+            <param name="plaintext">The plaintext string to encrypt.</param>
+            <returns>The encrypted ciphertext as a Base64-encoded string.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Encryption.AesEncryptionService.Decrypt(System.String)">
+            <summary>
+            Decrypts a ciphertext string using AES decryption.
+            </summary>
+            <param name="ciphertext">The ciphertext string to decrypt.</param>
+            <returns>The decrypted plaintext as a string.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Encryption.AesEncryptionService.Decrypt(System.Byte[])">
+            <summary>
+            Decrypts a byte array of ciphertext using AES decryption.
+            </summary>
+            <param name="cipherBytes">The byte array of ciphertext to decrypt.</param>
+            <returns>The decrypted plaintext as a string.</returns>
+        </member>
+        <member name="T:Angkorsoft.Core.Utils.Base64UrlEncoder">
+            <summary>
+            Encodes and Decodes strings using Base64 URL encoding.
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.Base64UrlEncoder.Decode(System.String)">
+            <summary>
+            Converts the specified Base64 URL encoded string to a UTF8 string.
+            </summary>
+            <param name="s">The Base64 URL encoded string to convert</param>
+            <returns>A UTF8 string</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.Base64UrlEncoder.DecodeBytes(System.String)">
+            <summary>
+            Converts the specified Base64 URL encoded string to a byte array.</summary>
+            <param name="s">The Base64 URL encoded string to convert</param>
+            <returns>A byte array</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.Base64UrlEncoder.Encode(System.String)">
+            <summary>
+            Converts the specified UTF8 string into a Base64 URL encoded string.
+            </summary>
+            <param name="s">The UTF8 string to convert</param>
+            <returns>A Base64 URL encoded string</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.Base64UrlEncoder.Encode(System.Byte[])">
+            <summary>
+            Converts the specified byte array to a Base64 URL encoded string.
+            </summary>
+            <param name="bytes">The byte array to convert</param>
+            <returns>A Base64 URL encoded string</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.Base64UrlEncoder.Encode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts the specified byte array to a Base64 URL encoded string.
+            </summary>
+            <param name="bytes">The byte array to convert</param>
+            <param name="offset">The byte array offset</param>
+            <param name="length">The number of elements in the byte array to convert</param>
+            <returns>A Base64 URL encoded string</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.ConverterKh.Number(System.Int32,System.Int32)">
+            <summary>
+            Converts a given number to Khmer language. If the number is negative, it takes the absolute value.
+            </summary>
+            <param name="num">The number to convert.</param>
+            <param name="leadingZeroDigits">the number of digits that will be formated to start with zero</param>
+            <returns>The Khmer representation of the number as a string.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.ObjectShredder`1.Shred(System.Collections.Generic.IEnumerable{`0},System.Data.DataTable,System.Nullable{System.Data.LoadOption})">
+            <summary>
+            Loads a DataTable from a sequence of objects.
+            </summary>
+            <param name="source">The sequence of objects to load into the DataTable.</param>
+            <param name="table">The input table. The schema of the table must match that
+            the type T.  If the table is null, a new table is created with a schema
+            created from the public properties and fields of the type T.</param>
+            <param name="options">Specifies how values from the source sequence will be applied to
+            existing rows in the table.</param>
+            <returns>A DataTable created from the source sequence.</returns>
+        </member>
+        <member name="M:Angkorsoft.Core.Utils.PivotTable.PivotData(System.String,System.String,Angkorsoft.Core.Utils.AggregateFunction,System.Boolean,System.String[])">
+            <summary>
+            Pivots the DataTable based on provided RowField, AggregateField, Aggregate Function and ColumnFields.//
+            </summary>
+            <param name="RowField">The column name of the Source Table which you want to spread into rows</param>
+            <param name="AggregateField">The column name of the Source Table which you want to aggregate.</param>
+            <param name="Aggregate">The Aggregate function which you want to apply in case matching data found more than once</param>
+            <param name="AddTotal">Add Total Column at the end?</param>
+            <param name="OtherColumns">The List of column names which you want to spread as columns</param>
+            <returns>A DataTable containing the Pivoted Data</returns>
+        </member>
+    </members>
+</doc>

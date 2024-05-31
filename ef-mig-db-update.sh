@@ -1,0 +1,1 @@
+dotnet ef database update V0.$1 --project . --context AppDbContext

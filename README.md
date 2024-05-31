@@ -10,7 +10,34 @@ cd AngkorAPI
 code .
 
 ### Step 1: create your entites
-See sample codes in Entities folder
+See sample codes in Entities folder.
+
+```
+namespace AngkorAPI.Entities;
+
+public class Customer : BaseEntity
+{
+
+    [MaxLength(20)]
+    [Required]
+    [GenAutoNumber]
+    public string Code { get; set; }
+    public SysList TitleOfCurtesy { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Name { get; set; }
+    public SysList Gender { get; set; }
+    public DateOnly BirthDate { get; set; }
+    public string IdCard { get; set; }
+    // more fields...
+
+    [GenMapBeforeSave]
+    public void MapSave(Customer c)
+    {
+        c.Name = $"{c.FirstName} {c.LastName}";
+    }
+}
+```
 
 ### Step 2: add database migration
 in MacOS/Linux, you can use ./ef-mig-add.sh {version_number}

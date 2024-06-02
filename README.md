@@ -31,8 +31,9 @@ public class Customer : BaseEntity
     public string IdCard { get; set; }
     // more fields...
 
-    [GenMapBeforeSave]
-    public void MapSave(Customer c)
+    // optional but if you want to assign some default values 
+    [GenMapBeforeInsert]
+    public void MapSave_or_any_name(Customer c)
     {
         c.Name = $"{c.FirstName} {c.LastName}";
     }

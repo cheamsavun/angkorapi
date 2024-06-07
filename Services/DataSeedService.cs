@@ -29,49 +29,6 @@ public class DataSeedService : IHostedService
 
     }
 
-    private async Task SeedLOVs()
-    {
-        var data = new List<SysList>();
-
-        data.AddRange(GenList(LOVHeaders.TitleOfCurtesy, new() {
-            new(1,"Mr."),
-            new(2,"Mrs."),
-            new(3,"Ms."),
-            new(4,"Dr."),
-        }));
-
-        data.AddRange(GenList(LOVHeaders.Gender, new() {
-            new(1,"Male"),
-            new(2,"Female"),
-            new(3,"Other")
-        }));
-
-        data.AddRange(GenList(LOVHeaders.Nationality, new() {
-            new(1,"Cambodian")
-        }));
-
-        data.AddRange(GenList(LOVHeaders.Country, new() {
-            new(1,"Cambodia")
-        }));
-
-        data.AddRange(GenList(LOVHeaders.Marital_Status, new() {
-            new(1,"Single"),
-            new(2,"Married"),
-            new(3,"Divorced"),
-            new(4,"Widower")
-        }));
-
-        await _SeedLists(data);
-    }
-    private List<SysList> GenList(LOVHeaders appList, List<IdName> values)
-    {
-        var ret = new List<SysList>();
-        foreach (var itm in values)
-        {
-            ret.Add(new SysList() { ListId = (short)appList, Value = itm.Id, Name = itm.Name });
-        }
-        return ret;
-    }
     private async Task SeedSystemSettings()
     {
         var data = new List<SysSetting>(){
@@ -120,6 +77,52 @@ public class DataSeedService : IHostedService
         foreach (var lov in values)
             coreContext.SysLists.AddIfNotExists(lov, x => x.ListId == lov.ListId && x.Value == lov.Value);
         await coreContext.SaveChangesAsync();
+    }
+
+    
+    private async Task SeedLOVs()
+    {
+        var data = new List<SysList>();
+
+        data.AddRange(GenList(LOVHeaders.TitleOfCurtesy, new() {
+            new(1,"Mr."),
+            new(2,"Mrs."),
+            new(3,"Ms."),
+            new(4,"Dr."),
+        }));
+
+        data.AddRange(GenList(LOVHeaders.Gender, new() {
+            new(1,"Male"),
+            new(2,"Female"),
+            new(3,"Other")
+        }));
+
+        data.AddRange(GenList(LOVHeaders.Nationality, new() {
+            new(1,"Cambodian")
+        }));
+
+        data.AddRange(GenList(LOVHeaders.Country, new() {
+            new(1,"Cambodia")
+        }));
+
+        data.AddRange(GenList(LOVHeaders.Marital_Status, new() {
+            new(1,"Single"),
+            new(2,"Married"),
+            new(3,"Divorced"),
+            new(4,"Widower")
+        }));
+
+        await _SeedLists(data);
+    }
+    
+    private List<SysList> GenList(LOVHeaders listHeader, List<IdName> values)
+    {
+        var ret = new List<SysList>();
+        foreach (var itm in values)
+        {
+            ret.Add(new SysList() { ListId = (short)listHeader, Value = itm.Id, Name = itm.Name });
+        }
+        return ret;
     }
 
     private async Task SeedAutoNumbers()

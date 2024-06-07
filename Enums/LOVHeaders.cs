@@ -2,7 +2,7 @@ namespace AngkorAPI.Enums;
 
 public enum LOVHeaders
 {
-   Gender,
+   Gender = 1,
    TitleOfCurtesy,
    Nationality,
    Country,

@@ -8,12 +8,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591, NU1608, MSB3277, CS0105, CS8618, CS9113, CS8601</NoWarn>
     <UserSecretsId>74e94fae-3130-46a0-9a76-b94373c54b30</UserSecretsId>
-    <PackageId>AngkorAPI.Test</PackageId>
+    <PackageId>AngkorAPI</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="ArmDot.Client" Version="2024.1.0" />
-    <PackageReference Include="ArmDot.Engine.MSBuildTasks" Version="2024.1.0" /> -->
     <PackageReference Include="serilog.aspnetcore" Version="8.0.1" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
     <PackageReference Include="FluentValidation" Version="11.9.1" />

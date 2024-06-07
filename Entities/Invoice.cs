@@ -78,7 +78,7 @@ public class Invoice : BaseEntity
     public bool SysCreated { get; set; }
 
     [GenMapBeforeCreate]
-    private async Task MapOnInsert(Invoice inv, IAppDbContext context) {
+    private void MapOnInsert(Invoice inv, IAppDbContext context) {
         inv.State = InvoiceStates.Draft;
         inv.TotalPaid = 0;
     }

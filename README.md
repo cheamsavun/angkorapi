@@ -1,5 +1,8 @@
 # Welcome to Angkor API 
-## A C# .NET8.0 project template using code generation from Entities to API Controllers
+
+## A C# .NET8.0 project clean architecture CQRS template using code generation from Entities to API Controllers
+
+Cloned from this https://github.com/jasontaylordev/CleanArchitecture but changed some implementations.
 
 mkdir AngkorAPI
 

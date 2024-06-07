@@ -3,14 +3,16 @@
 ## A C# .NET8.0 project clean architecture CQRS template using code generation from Entities to API Controllers
 
 Cloned from this https://github.com/jasontaylordev/CleanArchitecture but changed some implementations.
-
+```
 mkdir AngkorAPI
+cd AngkorAPI
 
 git clone https://github.com/cheamsavun/angkorapi.git
 
 cd AngkorAPI
 
 code .
+```
 
 ### Step 1: create your entites
 See sample codes in Entities folder.

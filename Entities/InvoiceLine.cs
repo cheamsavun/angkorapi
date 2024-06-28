@@ -21,7 +21,7 @@ public class InvoiceLine : BaseEntity
     public string Remark { get; set; }
     public short OrderIndex { get; set; }
 
-    [GenMapBeforeSave]
+    [GenPreSave]
     private void MapOnInsert(InvoiceLine line, InvoiceLinesUpdateInput inp,  IAppDbContext context) {
         line.SubTotal = line.Quantity * line.Price * (1 - line.DiscountRate / 100);
         line.ItemName = inp.ItemName;

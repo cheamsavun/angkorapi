@@ -33,7 +33,7 @@ public class Employee : BaseEntity
     public DateOnly EmployedDate { get; set; }
     public DateOnly ProbationDate { get; set; }
     
-    [GenMapBeforeSave]
+    [GenPreSave]
     public void MapSave(Employee data) {
         data.Name = $"{data.FirstName} {data.LastName}";
         // some more default values

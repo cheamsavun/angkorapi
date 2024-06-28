@@ -11,8 +11,7 @@ global using Angkorsoft.Core.Attributes;
 global using Angkorsoft.Core.Controllers;
 global using Angkorsoft.Core.Logic;
 global using Angkorsoft.Core.Exceptions;
-global using Angkorsoft.Generator.Attributes;
-
+global using Angkorsoft.Gentor.Attributes;
 
 global using AngkorAPI.Logic;
 global using AngkorAPI.Services;

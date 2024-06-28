@@ -19,81 +19,6 @@
             Gets or sets the policy name that determines access to the resource.
             </summary>
         </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreCreate">
-            <summary>
-            Mark this field not to be included in Create Command in code generation
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreDelete">
-            <summary>
-            Ignore in code generation for Delete operation in one-to-many relationship
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreInfoOutput">
-            <summary>
-            Mark this field not to be included in the Info Query output
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreListOutput">
-            <summary>
-            Mark this field not to be included in the List Query output
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreSave">
-            <summary>
-            Mark this field not to be included in both Create and Update Command in code generation
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenIgnoreUpdate">
-            <summary>
-            Mark this field not to be included in Update Command in code generation
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenListQueryDateRangeOptionalParam">
-            <summary>
-            Generate as optional date range parameter in list query
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenListQueryDateRangeParam">
-            <summary>
-            Generate as date range parameter in list query
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenListQueryOptionalParam">
-            <summary>
-            Generate as optional parameter for list query  
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenListQueryParam">
-            <summary>
-            Generate as parameter in list query
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenMapBeforeCreate">
-            <summary>
-            Inform code generator to insert the body of the method into the final code before insert data
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenMapBeforeSave">
-            <summary>
-            Inform code generator to insert the body of the method into the final code before insert or update data
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenMapBeforeUpdate">
-            <summary>
-            Inform code generator to insert the body of the method into the final code before update data
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenNameLookup">
-            <summary>
-            Mark this field to be included in the related List and Info Query IdName
-            </summary>
-        </member>
-        <member name="T:Angkorsoft.Core.Attributes.GenSearchable">
-            <summary>
-            Mark this field to be included in List Query Searchable; Data in this field will be searched by user Keyword
-            </summary>
-        </member>
         <member name="P:Angkorsoft.Core.Entities.SysList.ListId">
             <summary>
             Header List Id
@@ -718,6 +643,11 @@
             </summary>
             <param name="cipherBytes">The byte array of ciphertext to decrypt.</param>
             <returns>The decrypted plaintext as a string.</returns>
+        </member>
+        <member name="T:Angkorsoft.Core.Utils.Apix">
+            <summary>
+            API Extention Class
+            </summary>
         </member>
         <member name="T:Angkorsoft.Core.Utils.Base64UrlEncoder">
             <summary>

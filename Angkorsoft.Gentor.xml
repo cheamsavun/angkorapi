@@ -4,42 +4,122 @@
         <name>Angkorsoft.Gentor</name>
     </assembly>
     <members>
-        <member name="T:GenerateDbSetsAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateDbSetsAttribute">
             <summary>
             Generate DbSet of all entities to the underlying DbContext
             </summary>
         </member>
-        <member name="T:Angkorsoft.Generator.Attributes.GenerateCreateCommandControllerAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateCreateCommandControllerAttribute">
             <summary>
             Generate Create (POST) Api Controller (no logic) from the given entity class
             </summary>
         </member>
-        <member name="T:Angkorsoft.Generator.Attributes.GenerateCrudApiAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateCrudApiAttribute">
             <summary>
             Generate CRUD Api from the given entity class
             </summary>
         </member>
-        <member name="T:Angkorsoft.Generator.Attributes.GenerateDeleteCommandControllerAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateDeleteCommandControllerAttribute">
             <summary>
             Generate only delete Api Controller (no logic) from the given entity class
             </summary>
         </member>
-        <member name="T:Angkorsoft.Generator.Attributes.GenerateInfoQueryControllerAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateInfoQueryControllerAttribute">
             <summary>
             Generate Generate info query (GET one) Api Controller (no logic) from the given entity class
             </summary>
         </member>
-        <member name="T:Angkorsoft.Generator.Attributes.GenerateListQueryControllerAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateListQueryControllerAttribute">
             <summary>
             Generate Generate List Query (GET) Api Controller (no logic) from the given entity class
             </summary>
         </member>
-        <member name="T:Angkorsoft.Generator.Attributes.GenerateUpdateCommandControllerAttribute">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenerateUpdateCommandControllerAttribute">
             <summary>
             Generate Update (PUT) Api Controller (no logic) from the given entity class
             </summary>
         </member>
-        <member name="M:Angkorsoft.Generator.GeneratorService.GetMethodBodyCode(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.String)">
+        <member name="T:Angkorsoft.Gentor.Attributes.GenIgnoreCreate">
+            <summary>
+            Mark this field not to be included in Create Command in code generation
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenIgnoreDelete">
+            <summary>
+            Ignore in code generation for Delete operation in one-to-many relationship
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenIgnoreInfoOutput">
+            <summary>
+            Mark this field not to be included in the Info Query output
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenIgnoreListOutput">
+            <summary>
+            Mark this field not to be included in the List Query output
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenIgnoreSave">
+            <summary>
+            Mark this field not to be included in both Create and Update Command in code generation
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenIgnoreUpdate">
+            <summary>
+            Mark this field not to be included in Update Command in code generation
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenListQueryDateRangeOptionalParam">
+            <summary>
+            Generate as optional date range parameter in list query
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenListQueryDateRangeParam">
+            <summary>
+            Generate as date range parameter in list query
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenListQueryOptionalParam">
+            <summary>
+            Generate as optional parameter for list query  
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenListQueryParam">
+            <summary>
+            Generate as parameter in list query
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenNameLookup">
+            <summary>
+            Mark this field to be included in the related List and Info Query IdName
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenPreCreate">
+            <summary>
+            Inform code generator to add the body of the method into the final code as before data insert (EntityCreateCommand)
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenPreDelete">
+            <summary>
+            Inform code generator to insert the body of the method into the final code before deleting data (EntityDeleteCommand)
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenPreSave">
+            <summary>
+            Inform code generator to insert the body of the method into the final code before insert and update data EntityCreateCommand and EntityUpdateCommand
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenPreUpdate">
+            <summary>
+            Inform code generator to insert the body of the method into the final code before data update (EntityUpdateCommand)
+            </summary>
+        </member>
+        <member name="T:Angkorsoft.Gentor.Attributes.GenSearchable">
+            <summary>
+            Mark this field to be included in List Query Searchable; Data in this field will be searched by user Keyword
+            </summary>
+        </member>
+        <member name="M:Angkorsoft.Gentor.GeneratorService.GetMethodBodyCode(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.String)">
             <summary>
             Returns Tuple of SourceCode, DynamicImportString
             </summary>

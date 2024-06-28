@@ -33,9 +33,7 @@ public class Customer : BaseEntity
 
     public Employee AccHandler { get; set; }
 
-
-
-    [GenMapBeforeSave]
+    [GenPreSave]
     public void MapSave(Customer c)
     {
         c.Name = $"{c.FirstName} {c.LastName}";

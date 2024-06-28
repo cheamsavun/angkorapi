@@ -77,7 +77,7 @@ public class Invoice : BaseEntity
     [GenDefaultValue(false)]
     public bool SysCreated { get; set; }
 
-    [GenMapBeforeCreate]
+    [GenPreCreate]
     private void MapOnInsert(Invoice inv, IAppDbContext context) {
         inv.State = InvoiceStates.Draft;
         inv.TotalPaid = 0;

@@ -53,7 +53,18 @@ namespace AngkorAPI.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("integer");
+
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("bytea");
+
+                    b.Property<byte[]>("PhotoThumnail")
+                        .HasColumnType("bytea");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories", "data");
                 });
@@ -65,9 +76,6 @@ namespace AngkorAPI.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AccHandlerId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("AddressLine1")
                         .HasMaxLength(250)
@@ -85,11 +93,11 @@ namespace AngkorAPI.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<string>("ContactName")
+                    b.Property<string>("Email")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("ErrMsg")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
@@ -98,6 +106,10 @@ namespace AngkorAPI.Migrations
                         .HasColumnType("character varying(250)");
 
                     b.Property<string>("FirstName")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("FirstNameLoc")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
@@ -110,6 +122,9 @@ namespace AngkorAPI.Migrations
 
                     b.Property<DateOnly>("IdCardIssueDate")
                         .HasColumnType("date");
+
+                    b.Property<int?>("IndustryId")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsCorp")
                         .HasColumnType("boolean");
@@ -121,9 +136,20 @@ namespace AngkorAPI.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
+                    b.Property<string>("LastNameLoc")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
                     b.Property<string>("Name")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
+
+                    b.Property<string>("NameLoc")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<int?>("NationalityId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(250)
@@ -137,21 +163,33 @@ namespace AngkorAPI.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("bytea");
+
+                    b.Property<byte[]>("PhotoTh")
+                        .HasColumnType("bytea");
+
                     b.Property<int?>("TitleOfCurtesyId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("VATIN")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccHandlerId");
-
                     b.HasIndex("GenderId");
+
+                    b.HasIndex("IndustryId");
+
+                    b.HasIndex("NationalityId");
 
                     b.HasIndex("TitleOfCurtesyId");
 
                     b.ToTable("Customers", "data");
                 });
 
-            modelBuilder.Entity("AngkorAPI.Entities.Employee", b =>
+            modelBuilder.Entity("AngkorAPI.Entities.CustomerContact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -159,82 +197,39 @@ namespace AngkorAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AddressLine1")
+                    b.Property<string>("ContactName")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.Property<string>("AddressLine2")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateOnly>("BirthDate")
-                        .HasColumnType("date");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.Property<DateOnly>("EmployedDate")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Expat")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Fax")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<int?>("GenderId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("IdCard")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateOnly>("IdCardIssueDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("JobTitle")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
                     b.Property<string>("Note")
-                        .HasMaxLength(2147483647)
-                        .HasColumnType("text");
-
-                    b.Property<string>("Notes")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Phone1")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Phone2")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateOnly>("ProbationDate")
-                        .HasColumnType("date");
-
-                    b.Property<int?>("TitleOfCurtesyId")
-                        .HasColumnType("integer");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GenderId");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("TitleOfCurtesyId");
-
-                    b.ToTable("Employees", "data");
+                    b.ToTable("CustomerContacts", "data");
                 });
 
             modelBuilder.Entity("AngkorAPI.Entities.Invoice", b =>
@@ -244,13 +239,6 @@ namespace AngkorAPI.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("CommissionAmount")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("CommissionValue")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("CustomerAddress")
                         .HasMaxLength(800)
@@ -275,12 +263,6 @@ namespace AngkorAPI.Migrations
 
                     b.Property<DateOnly>("DocDate")
                         .HasColumnType("date");
-
-                    b.Property<int>("DocType")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("integer");
 
                     b.Property<decimal>("GrandTotal")
                         .HasColumnType("numeric");
@@ -327,9 +309,6 @@ namespace AngkorAPI.Migrations
                     b.Property<int>("State")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("SysCreated")
-                        .HasColumnType("boolean");
-
                     b.Property<decimal>("TaxAmount")
                         .HasColumnType("numeric");
 
@@ -349,16 +328,17 @@ namespace AngkorAPI.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
+                    b.Property<decimal>("XRate")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("Number")
+                        .IsUnique();
 
                     b.HasIndex("ShipViaId");
-
-                    b.HasIndex("DocType", "Number")
-                        .IsUnique();
 
                     b.ToTable("Invoices", "data");
                 });
@@ -403,6 +383,9 @@ namespace AngkorAPI.Migrations
                     b.Property<decimal>("SubTotal")
                         .HasColumnType("numeric");
 
+                    b.Property<decimal>("TaxRate")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
 
                     b.HasIndex("InvoiceId");
@@ -430,9 +413,6 @@ namespace AngkorAPI.Migrations
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("numeric");
-
-                    b.Property<int>("CostingMethod")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -560,40 +540,49 @@ namespace AngkorAPI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AngkorAPI.Entities.Category", b =>
+                {
+                    b.HasOne("AngkorAPI.Entities.Category", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("AngkorAPI.Entities.Customer", b =>
                 {
-                    b.HasOne("AngkorAPI.Entities.Employee", "AccHandler")
-                        .WithMany()
-                        .HasForeignKey("AccHandlerId");
-
                     b.HasOne("Angkorsoft.Core.Entities.SysList", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId");
+
+                    b.HasOne("Angkorsoft.Core.Entities.SysList", "Industry")
+                        .WithMany()
+                        .HasForeignKey("IndustryId");
+
+                    b.HasOne("Angkorsoft.Core.Entities.SysList", "Nationality")
+                        .WithMany()
+                        .HasForeignKey("NationalityId");
 
                     b.HasOne("Angkorsoft.Core.Entities.SysList", "TitleOfCurtesy")
                         .WithMany()
                         .HasForeignKey("TitleOfCurtesyId");
 
-                    b.Navigation("AccHandler");
-
                     b.Navigation("Gender");
+
+                    b.Navigation("Industry");
+
+                    b.Navigation("Nationality");
 
                     b.Navigation("TitleOfCurtesy");
                 });
 
-            modelBuilder.Entity("AngkorAPI.Entities.Employee", b =>
+            modelBuilder.Entity("AngkorAPI.Entities.CustomerContact", b =>
                 {
-                    b.HasOne("Angkorsoft.Core.Entities.SysList", "Gender")
-                        .WithMany()
-                        .HasForeignKey("GenderId");
+                    b.HasOne("AngkorAPI.Entities.Customer", "Customer")
+                        .WithMany("Contacts")
+                        .HasForeignKey("CustomerId");
 
-                    b.HasOne("Angkorsoft.Core.Entities.SysList", "TitleOfCurtesy")
-                        .WithMany()
-                        .HasForeignKey("TitleOfCurtesyId");
-
-                    b.Navigation("Gender");
-
-                    b.Navigation("TitleOfCurtesy");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("AngkorAPI.Entities.Invoice", b =>
@@ -604,17 +593,11 @@ namespace AngkorAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AngkorAPI.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("Angkorsoft.Core.Entities.SysList", "ShipVia")
                         .WithMany()
                         .HasForeignKey("ShipViaId");
 
                     b.Navigation("Customer");
-
-                    b.Navigation("Employee");
 
                     b.Navigation("ShipVia");
                 });
@@ -657,6 +640,11 @@ namespace AngkorAPI.Migrations
             modelBuilder.Entity("AngkorAPI.Entities.Category", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("AngkorAPI.Entities.Customer", b =>
+                {
+                    b.Navigation("Contacts");
                 });
 
             modelBuilder.Entity("AngkorAPI.Entities.Invoice", b =>

@@ -16,7 +16,7 @@ public partial interface IAppDbContext
     public DbSet<SysArea> SysAreas { get; set; }
 
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<Employee> Employees { get; set; }
+    public DbSet<CustomerContact> CustomerContacts { get; set; }
     
     public DbSet<Category> Categories { get; set; }
     public DbSet<Item> Items { get; set; }

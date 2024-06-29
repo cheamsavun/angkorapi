@@ -2,7 +2,7 @@ using System.Reflection;
 
 namespace AngkorAPI.Infrastructure;
 
-[GenerateDbSets]
+// [GenerateDbSets]
 public partial class AppDbContext : DbContext, IAppDbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -17,13 +17,13 @@ public partial class AppDbContext : DbContext, IAppDbContext
     public DbSet<SysArea> SysAreas { get; set; }
 
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<Employee> Employees { get; set; }
-
+    public DbSet<CustomerContact> CustomerContacts { get; set; }
+    
     public DbSet<Category> Categories { get; set; }
     public DbSet<Item> Items { get; set; }
     public DbSet<Invoice> Invoices { get; set; }
     public DbSet<InvoiceLine> InvoiceLines { get; set; }
-   
+     
 
     public async Task<int> SaveChangesAsync()
     {
@@ -38,19 +38,17 @@ public partial class AppDbContext : DbContext, IAppDbContext
         builder.Entity<SysListHeader>().ToTable("SysListHeaders", "system", t => t.ExcludeFromMigrations());
         builder.Entity<SysList>().ToTable("SysLists", "system", t => t.ExcludeFromMigrations());
         builder.Entity<SysArea>().ToTable("SysAreas", "system", t => t.ExcludeFromMigrations());
-        
-
         builder.HasDefaultSchema("data");
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        
-        builder.Entity<Invoice>().HasIndex(p => new { p.DocType, p.Number }).IsUnique();
-        
+
+        builder.Entity<Invoice>().HasIndex(p => new { p.Number }).IsUnique();
+
         foreach (var prop in builder.Model.GetEntityTypes()
                      .SelectMany(t => t.GetProperties()).Where(p => p.ClrType == typeof(string)))
         {
             if (prop.GetMaxLength() == null)
                 prop.SetMaxLength(250);
         }
- 
+
     }
 }

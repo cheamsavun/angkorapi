@@ -46,6 +46,8 @@
     <PackageReference Include="Fluid.Core" Version="2.10.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.9.2" />
+    <PackageReference Include="ArmDot.Client" Version="2024.1.0" />
+    <PackageReference Include="ArmDot.Engine.MSBuildTasks" Version="2024.1.0" />
   </ItemGroup>
 
   <ItemGroup>

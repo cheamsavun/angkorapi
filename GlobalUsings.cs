@@ -19,4 +19,3 @@ global using AngkorAPI.Enums;
 global using AngkorAPI.Entities;
 global using Mapster;
 global using MediatR;
-global using System.Runtime.Serialization;

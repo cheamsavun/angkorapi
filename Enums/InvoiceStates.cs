@@ -2,12 +2,11 @@
 namespace AngkorAPI.Enums;
 
 public enum InvoiceStates {
-  Cancelled = 0,
-  Draft = 1,
-  Processing = 2,
-  Approved = 10,
-  PartialPaid = 11,
-  FullPaid = 12,
+  Cancelled = -1,
+  Draft = 0,
+  Approved = 1,
+  PartialPaid = 2,
+  FullPaid = 3,
   
 }
 

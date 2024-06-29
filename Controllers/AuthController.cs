@@ -1,24 +1,16 @@
-﻿
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace AngkorAPI.Controllers;
 
-public class AuthController : ApiControllerBase
+public class AuthController(IAuthService authService) : ApiControllerBase
 {
-    private readonly IAuthService authService;
-
-    public AuthController(IAuthService authService)
-    {
-        this.authService = authService;
-    }
-
     [AllowAnonymous]
-    [HttpPost]
-    [Route("Login")]
+    [HttpPost("Login")]
     [EnableRateLimiting(Constants.LIMIT_3TIMES_15S)]
-    public async Task<ActionResult<LoginInfo>> LoginAsync([FromBody] PasswordLoginInput input)
+    public async Task<ActionResult<LoginInfo>> LoginAsync(PasswordLoginInput input)
     {
-        return await authService.LoginWithPasswordAsync(input);
+        var login = await authService.LoginWithPasswordAsync(input);
+        return login;
     }
 
     [HttpGet("Info")]
@@ -30,9 +22,9 @@ public class AuthController : ApiControllerBase
     [AllowAnonymous]
     [HttpPost("Refresh")]
     [EnableRateLimiting(Constants.LIMIT_3TIMES_15S)]
-    public async Task<ActionResult<LoginInfo>> Refresh() //RefreshTokenInput tokenApiModel)
+    public async Task<ActionResult<LoginInfo>> Refresh()  
     {
-        return await authService.Refresh();//(tokenApiModel);
+        return await authService.Refresh(); 
     }
 
     [HttpPost("Logout")]
@@ -54,4 +46,3 @@ public class AuthController : ApiControllerBase
 
     
 }
-

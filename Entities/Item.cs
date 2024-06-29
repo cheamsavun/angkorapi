@@ -10,8 +10,6 @@ public class Item : BaseCodeNameEntity
   [GenDefaultValue(0)]
   public decimal Cost { get; set; }
 
-  public CostingMethods CostingMethod { get; set; }
-
   public bool ShowInCatalog { get; set; }
 
 }

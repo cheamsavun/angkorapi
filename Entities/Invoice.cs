@@ -1,13 +1,10 @@
 
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AngkorAPI.Entities;
 
 public class Invoice : BaseEntity
 {
-    [Required]
-    [GenListQueryParam]
-    [GenDefaultValue(BizDocTypes.Invoice)]
-    public BizDocTypes DocType { get; set; }
     
     [MaxLength(20)]
     [Required]
@@ -16,6 +13,7 @@ public class Invoice : BaseEntity
     public string Number { get; set; }
 
     [Required]
+    [GenListQueryDateRangeOptionalParam]
     public DateOnly DocDate { get; set; }
     
     [Required]
@@ -30,9 +28,6 @@ public class Invoice : BaseEntity
 
     [MaxLength(800)]
     public string CustomerAddress { get; set; }
-
-    public Employee Employee { get; set; }
-    
 
     [MaxLength(400)]
     public string InvoiceNote { get; set; }
@@ -50,6 +45,10 @@ public class Invoice : BaseEntity
     public decimal GrandTotal { get; set; }
     public decimal GrandTotalFc { get; set; }
 
+
+    [GenDefaultValue(1)]
+    public decimal XRate { get; set; }
+
     [MaxLength]
     public string Notes { get; set; }
     
@@ -61,28 +60,35 @@ public class Invoice : BaseEntity
     public string TrackingNumber { get; set; }
     public string CustomerNotes { get; set; }
     
-    public string CommissionValue { get; set; }
-    public decimal CommissionAmount { get; set; }
     
     [GenIgnoreUpdate]
     [GenDefaultValue(InvoiceStates.Draft)]
     public InvoiceStates State { get; set; }
+
+    [NotMapped]
+    public bool Approved => State == InvoiceStates.Approved;
     
     [GenIgnoreListOutput]
     public ICollection<InvoiceLine> Lines { get; set; }
 
     
-    [GenIgnoreSave]
-    [GenIgnoreListOutput]
-    [GenDefaultValue(false)]
-    public bool SysCreated { get; set; }
 
-    [GenPreCreate]
-    private void MapOnInsert(Invoice inv, IAppDbContext context) {
-        inv.State = InvoiceStates.Draft;
-        inv.TotalPaid = 0;
-    }
-
+    // [GenPreCreate]
+    // private async Task MapOnInsert(Invoice inv, InvoiceCreateCommand request, IAppDbContext context) {
+    //     inv.State = InvoiceStates.Draft;
+    //     inv.BaseCurrency = await context.Currencies.FirstOrDefaultAsync(x => x.IsBase);
+    //
+    //     inv.TotalAmount = request.Lines.Sum(x => x.SubTotal);
+    //     inv.TaxAmount = request.Lines.Sum(x => x.SubTotal * x.TaxRate / 100);
+    // }
+    //
+    // [GenPreUpdate]
+    // private async Task MapOnSave(Invoice inv, InvoiceUpdateCommand request) {
+    //
+    //     inv.TotalAmount = request.Lines.Sum(x => x.SubTotal);
+    //     inv.TaxAmount = request.Lines.Sum(x => x.SubTotal * x.TaxRate / 100);
+    //     inv.GrandTotal = inv.TotalAmount + inv.TaxAmount;
+    // }
 
 }
 

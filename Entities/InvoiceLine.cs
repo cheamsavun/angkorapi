@@ -17,14 +17,16 @@ public class InvoiceLine : BaseEntity
     public decimal DiscountAmt { get; set; }
     public decimal SubTotal { get; set; }
 
+    public decimal TaxRate { get; set; }
+
     [MaxLength(4000)]
     public string Remark { get; set; }
     public short OrderIndex { get; set; }
 
-    [GenPreSave]
-    private void MapOnInsert(InvoiceLine line, InvoiceLinesUpdateInput inp,  IAppDbContext context) {
-        line.SubTotal = line.Quantity * line.Price * (1 - line.DiscountRate / 100);
-        line.ItemName = inp.ItemName;
-    }
+    // [GenPreSave]
+    // private void MapOnSave(InvoiceLine line, InvoiceLinesUpdateInput inp,  IAppDbContext context) {
+    //     line.SubTotal = line.Quantity * line.Price * (1 - line.DiscountRate / 100);
+    //     line.ItemName = inp.ItemName;
+    // }
 
 }

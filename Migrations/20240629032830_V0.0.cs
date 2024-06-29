@@ -22,6 +22,9 @@ namespace AngkorAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ParentId = table.Column<int>(type: "integer", nullable: true),
+                    Photo = table.Column<byte[]>(type: "bytea", nullable: true),
+                    PhotoThumnail = table.Column<byte[]>(type: "bytea", nullable: true),
                     Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     NameLoc = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
@@ -31,19 +34,34 @@ namespace AngkorAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Categories_Categories_ParentId",
+                        column: x => x.ParentId,
+                        principalSchema: "data",
+                        principalTable: "Categories",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "Customers",
                 schema: "data",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Code = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    IsCorp = table.Column<bool>(type: "boolean", nullable: false),
+                    IsLocal = table.Column<bool>(type: "boolean", nullable: false),
+                    IndustryId = table.Column<int>(type: "integer", nullable: true),
+                    NationalityId = table.Column<int>(type: "integer", nullable: true),
+                    VATIN = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     TitleOfCurtesyId = table.Column<int>(type: "integer", nullable: true),
                     FirstName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     LastName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    FirstNameLoc = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    LastNameLoc = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    NameLoc = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     GenderId = table.Column<int>(type: "integer", nullable: true),
                     BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
                     IdCard = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
@@ -54,23 +72,34 @@ namespace AngkorAPI.Migrations
                     Fax = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     AddressLine1 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     AddressLine2 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    Notes = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    Expat = table.Column<bool>(type: "boolean", nullable: false),
-                    Note = table.Column<string>(type: "text", maxLength: 2147483647, nullable: true),
-                    EmployedDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    ProbationDate = table.Column<DateOnly>(type: "date", nullable: false)
+                    Photo = table.Column<byte[]>(type: "bytea", nullable: true),
+                    PhotoTh = table.Column<byte[]>(type: "bytea", nullable: true),
+                    ErrMsg = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    Notes = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_SysLists_GenderId",
+                        name: "FK_Customers_SysLists_GenderId",
                         column: x => x.GenderId,
                         principalSchema: "system",
                         principalTable: "SysLists",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Employees_SysLists_TitleOfCurtesyId",
+                        name: "FK_Customers_SysLists_IndustryId",
+                        column: x => x.IndustryId,
+                        principalSchema: "system",
+                        principalTable: "SysLists",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Customers_SysLists_NationalityId",
+                        column: x => x.NationalityId,
+                        principalSchema: "system",
+                        principalTable: "SysLists",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Customers_SysLists_TitleOfCurtesyId",
                         column: x => x.TitleOfCurtesyId,
                         principalSchema: "system",
                         principalTable: "SysLists",
@@ -87,7 +116,6 @@ namespace AngkorAPI.Migrations
                     ItemType = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: true),
                     Cost = table.Column<decimal>(type: "numeric", nullable: false),
-                    CostingMethod = table.Column<int>(type: "integer", nullable: false),
                     ShowInCatalog = table.Column<bool>(type: "boolean", nullable: false),
                     Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     NameLoc = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
@@ -107,53 +135,28 @@ namespace AngkorAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "CustomerContacts",
                 schema: "data",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Code = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    TitleOfCurtesyId = table.Column<int>(type: "integer", nullable: true),
-                    FirstName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    LastName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    GenderId = table.Column<int>(type: "integer", nullable: true),
-                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    IdCard = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    IdCardIssueDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    Phone1 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    Phone2 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    CustomerId = table.Column<int>(type: "integer", nullable: true),
+                    ContactName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    JobTitle = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    Phone1 = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    Phone2 = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     Email = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    Fax = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    AddressLine1 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    AddressLine2 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    ContactName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    Notes = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    IsCorp = table.Column<bool>(type: "boolean", nullable: false),
-                    IsLocal = table.Column<bool>(type: "boolean", nullable: false),
-                    AccHandlerId = table.Column<int>(type: "integer", nullable: true)
+                    Note = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_CustomerContacts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_Employees_AccHandlerId",
-                        column: x => x.AccHandlerId,
+                        name: "FK_CustomerContacts_Customers_CustomerId",
+                        column: x => x.CustomerId,
                         principalSchema: "data",
-                        principalTable: "Employees",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Customers_SysLists_GenderId",
-                        column: x => x.GenderId,
-                        principalSchema: "system",
-                        principalTable: "SysLists",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Customers_SysLists_TitleOfCurtesyId",
-                        column: x => x.TitleOfCurtesyId,
-                        principalSchema: "system",
-                        principalTable: "SysLists",
+                        principalTable: "Customers",
                         principalColumn: "Id");
                 });
 
@@ -164,7 +167,6 @@ namespace AngkorAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DocType = table.Column<int>(type: "integer", nullable: false),
                     Number = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     DocDate = table.Column<DateOnly>(type: "date", nullable: false),
                     NextDate = table.Column<DateOnly>(type: "date", nullable: false),
@@ -172,7 +174,6 @@ namespace AngkorAPI.Migrations
                     RefType = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     CustomerId = table.Column<int>(type: "integer", nullable: false),
                     CustomerAddress = table.Column<string>(type: "character varying(800)", maxLength: 800, nullable: true),
-                    EmployeeId = table.Column<int>(type: "integer", nullable: true),
                     InvoiceNote = table.Column<string>(type: "character varying(400)", maxLength: 400, nullable: true),
                     GrossAmount = table.Column<decimal>(type: "numeric", nullable: false),
                     GrossAmountFc = table.Column<decimal>(type: "numeric", nullable: false),
@@ -185,16 +186,14 @@ namespace AngkorAPI.Migrations
                     TaxAmountFc = table.Column<decimal>(type: "numeric", nullable: false),
                     GrandTotal = table.Column<decimal>(type: "numeric", nullable: false),
                     GrandTotalFc = table.Column<decimal>(type: "numeric", nullable: false),
+                    XRate = table.Column<decimal>(type: "numeric", nullable: false),
                     Notes = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     TotalPaid = table.Column<decimal>(type: "numeric", nullable: false),
                     ShipToAddress = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     ShipViaId = table.Column<int>(type: "integer", nullable: true),
                     TrackingNumber = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     CustomerNotes = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    CommissionValue = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    CommissionAmount = table.Column<decimal>(type: "numeric", nullable: false),
-                    State = table.Column<int>(type: "integer", nullable: false),
-                    SysCreated = table.Column<bool>(type: "boolean", nullable: false)
+                    State = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,12 +205,6 @@ namespace AngkorAPI.Migrations
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Invoices_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalSchema: "data",
-                        principalTable: "Employees",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Invoices_SysLists_ShipViaId",
                         column: x => x.ShipViaId,
@@ -235,6 +228,7 @@ namespace AngkorAPI.Migrations
                     DiscountRate = table.Column<decimal>(type: "numeric", nullable: false),
                     DiscountAmt = table.Column<decimal>(type: "numeric", nullable: false),
                     SubTotal = table.Column<decimal>(type: "numeric", nullable: false),
+                    TaxRate = table.Column<decimal>(type: "numeric", nullable: false),
                     Remark = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     OrderIndex = table.Column<short>(type: "smallint", nullable: false)
                 },
@@ -258,10 +252,16 @@ namespace AngkorAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_AccHandlerId",
+                name: "IX_Categories_ParentId",
                 schema: "data",
-                table: "Customers",
-                column: "AccHandlerId");
+                table: "Categories",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerContacts_CustomerId",
+                schema: "data",
+                table: "CustomerContacts",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_GenderId",
@@ -270,21 +270,21 @@ namespace AngkorAPI.Migrations
                 column: "GenderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Customers_IndustryId",
+                schema: "data",
+                table: "Customers",
+                column: "IndustryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_NationalityId",
+                schema: "data",
+                table: "Customers",
+                column: "NationalityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Customers_TitleOfCurtesyId",
                 schema: "data",
                 table: "Customers",
-                column: "TitleOfCurtesyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_GenderId",
-                schema: "data",
-                table: "Employees",
-                column: "GenderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_TitleOfCurtesyId",
-                schema: "data",
-                table: "Employees",
                 column: "TitleOfCurtesyId");
 
             migrationBuilder.CreateIndex(
@@ -306,17 +306,11 @@ namespace AngkorAPI.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Invoices_DocType_Number",
+                name: "IX_Invoices_Number",
                 schema: "data",
                 table: "Invoices",
-                columns: new[] { "DocType", "Number" },
+                column: "Number",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_EmployeeId",
-                schema: "data",
-                table: "Invoices",
-                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Invoices_ShipViaId",
@@ -335,6 +329,10 @@ namespace AngkorAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CustomerContacts",
+                schema: "data");
+
+            migrationBuilder.DropTable(
                 name: "InvoiceLines",
                 schema: "data");
 
@@ -352,10 +350,6 @@ namespace AngkorAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories",
-                schema: "data");
-
-            migrationBuilder.DropTable(
-                name: "Employees",
                 schema: "data");
         }
     }
